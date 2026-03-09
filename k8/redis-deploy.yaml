@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-app
+  name: redis-test
   namespace: superset
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: demo-web
+      app: redis-test
   template:
     metadata:
       labels:
-        app: demo-web
+        app: redis-test
     spec:
       containers:
-      - name: web-container
-        image: nginx:latest
-         ports:
-         - containerPort: 80
+      - name: redis
+        image: redis:7-alpine
+        ports:
+        - containerPort: 6379

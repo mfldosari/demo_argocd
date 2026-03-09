@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-config
+  namespace: superset
+data:
+  test-key: "This is a test value from ConfigMap."

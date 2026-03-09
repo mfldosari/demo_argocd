@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin-test
+  namespace: superset
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpbin-test
+  template:
+    metadata:
+      labels:
+        app: httpbin-test
+    spec:
+      containers:
+      - name: httpbin
+        image: kennethreitz/httpbin
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+      volumes:
+      - name: config-volume
+        configMap:
+          name: test-config
